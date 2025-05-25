@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Archivo+Black&family=DM+Serif+Display:ital@0;1&family=Dancing+Script:wght@400..700&family=Fascinate+Inline&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Oi&family=Pacifico&family=Ribeye+Marrow&family=Rubik+Mono+One&display=swap" rel="stylesheet">
+        <title>Marininha</title>
+        <style>
+            body {
+               background-color: #F1E3D3 ;
+               color: #926df9;
+            }
+
+            .titulo {
+                color: #2cc0a2;
+            }
+
+            .ribeye-marrow-regular {
+  font-family: "Ribeye Marrow", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+        </style>
+    </head>    
+    <body >
+        <div class="ribeye-marrow-regular titulo">LOJA DE DOCES-donuts</div>
+        <form id="montarDoceForm" onsubmit="adicionarDoce(event)">
+            <label for="sabor">Escolha o sabor:</label>
+            <select id="sabor" name="sabor">
+                <option value="Baunilha">Baunilha</option>
+                <option value="Morango">Morango</option>
+                <option value="Chocolate">Chocolate</option>
+                <option value="Tuti-Fruti">Tuti-Fruti</option>
+                <option value="Abacaxi">Abacaxi</option>
+                <option value="Limão">Limão</option>
+                <option value="Coco">Coco</option>
+                <option value="Doce de leite">Doce de leite</option>
+                <option value="Framboesa">Framboesa</option>
+                <option value="Caramelo">Caramelo</option>
+            </select>
+            <br><br>
+            <label for="cobertura">Escolha a cobertura:</label>
+            <select id="cobertura" name="cobertura">
+                <option value="Morango">Morango</option>
+                <option value="Morango com granulado">Morango com granulado</option>
+                <option value="Chocolate">Chocolate</option>
+                <option value="Chocolate com glacê">Chocolate com glacê</option>
+                <option value="Baunilha com granulado">Baunilha com granulado</option>
+                <option value="Baunilha com granulado e glacê">Baunilha com granulado e glacê</option>
+                <option value="Uva">Uva</option>
+                <option value="Pistache">Pistache</option>
+                <option value="Leite Ninho">Leite Ninho</option>
+                <option value="Caramelo salgado">Caramelo salgado</option>
+                <option value="Paçoca">Paçoca</option>
+                <option value="Nutella">Nutella</option>
+                <option value="Glacê colorido">Glacê colorido</option>
+            </select>
+            <br><br>
+            <button type="submit">Adicionar doce</button>
+            <button type="button" onclick="limparDoces()" style="margin-left:10px;">Limpar tudo</button>
+        </form>
+        <div id="resultado" style="margin-top:20px;font-weight:bold;"></div>
+        <h3>Meus doces montados:</h3>
+        <ul id="listaDoces"></ul>
+        <script>
+            const doces = [];
+            function adicionarDoce(event) {
+                event.preventDefault();
+                var sabor = document.getElementById('sabor').value;
+                var cobertura = document.getElementById('cobertura').value;
+                doces.push({ sabor, cobertura });
+                atualizarListaDoces();
+                document.getElementById('resultado').innerText = `Você adicionou: ${sabor} com cobertura de ${cobertura}!`;
+            }
+            function atualizarListaDoces() {
+                const lista = document.getElementById('listaDoces');
+                lista.innerHTML = '';
+                doces.forEach(function(doce, idx) {
+                    const li = document.createElement('li');
+                    li.textContent = `${doce.sabor} com cobertura de ${doce.cobertura}`;
+                    lista.appendChild(li);
+                });
+            }
+            function limparDoces() {
+                doces.length = 0;
+                atualizarListaDoces();
+                document.getElementById('resultado').innerText = '';
+            }
+        </script>
+
+
+    </body>
+        
+    
+</html>
